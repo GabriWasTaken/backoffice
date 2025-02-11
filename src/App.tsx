@@ -1,8 +1,6 @@
 import { LogtoProvider, LogtoConfig } from '@logto/react';
 import './App.css'
-import { Route, Routes } from 'react-router';
-import { LoginCallback } from './LoginCallback';
-import Home from './Home';
+import AppRouter from './components/AppRouter';
 
 function App() {
   const config: LogtoConfig = {
@@ -11,14 +9,9 @@ function App() {
   };
 
   return (
-    <>
     <LogtoProvider config={config}>
-      <Routes>
-        <Route path="/callback" element={<LoginCallback />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <AppRouter />
     </LogtoProvider>
-    </>
   )
 }
 

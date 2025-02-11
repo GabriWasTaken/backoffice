@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router';
 export const LoginCallback = () => {
   const navigate = useNavigate();
   const { isLoading } = useHandleSignInCallback(() => {
-    navigate("/");
+    navigate("/dashboard");
+    localStorage.setItem("isAuthenticated", "true");
     // Navigate to root path when finished
   });
 

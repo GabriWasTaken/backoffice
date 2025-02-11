@@ -1,26 +1,24 @@
 import React, { useEffect } from 'react'
 import { useLogto } from '@logto/react';
-import Layout from './Layout';
+import { useNavigate } from 'react-router';
 
 function Home() {
-  const { signIn, signOut, isAuthenticated, getIdTokenClaims } = useLogto();
+  const { signIn, isAuthenticated, getIdTokenClaims } = useLogto();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       if (isAuthenticated) {
         const claims = await getIdTokenClaims();
         console.log("claims", claims);
+        navigate('/dashboard');
       } else {
         signIn('http://localhost:3000/callback');
       }
     })();
   }, [getIdTokenClaims, isAuthenticated, signIn]);
 
-  return isAuthenticated && (
-    <Layout>
-      Qua le mie pagine
-    </Layout>
-  );
+  return <></>
 }
 
 export default Home
