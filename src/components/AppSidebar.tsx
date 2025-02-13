@@ -16,7 +16,7 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Logo</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {siteMap.map((item) => (

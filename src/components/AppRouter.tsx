@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { LoginCallback } from './login/LoginCallback';
 import Home from './Home';
 import AutenticatedHome from './AutenticatedHome';
-import Dashboard from './views/Dashboard';
-import Customers from './views/Customers';
 import { useLogto } from '@logto/react';
+import siteMap from '@/utils/siteMap';
 
 function AppRouter() {
   const { isAuthenticated, isLoading } = useLogto();
@@ -14,20 +13,23 @@ function AppRouter() {
     return <div>Loading...</div>; // Mostra un loader durante il caricamento
   }
 
+  const renderSitemapRoutes: () => JSX.Element[] = () => {
+    return siteMap.map(element => {
+      return (  
+      <Route
+        path={element.pageType === 'detail' ? `${element.path}/:id` : element.path}
+        element={isAuthenticated ? <AutenticatedHome component={<element.component />} pageType={element.pageType} /> : <Navigate to="/" />}
+      />
+    );
+    })
+  }
+
   return (
     <BrowserRouter> 
       <Routes>
         <Route path="/callback" element={<LoginCallback />} />
         <Route path="/" element={<Home />} />
-
-        <Route
-          path="/dashboard"
-          element={isAuthenticated ? <AutenticatedHome component={<Dashboard />} /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/customers"
-          element={isAuthenticated ? <AutenticatedHome component={<Customers />} /> : <Navigate to="/" />}
-        />
+        {renderSitemapRoutes()}
       </Routes>
     </BrowserRouter>
   )

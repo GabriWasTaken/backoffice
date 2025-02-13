@@ -1,8 +1,9 @@
 import React, { JSX } from 'react'
 import Layout from './Layout';
 import { useLogto } from '@logto/react';
-
-function AutenticatedHome({ component }: { component: JSX.Element }) {
+import ListFilters from './listComponents/ListFilters';
+import Table from './listComponents/Table';
+function AutenticatedHome({ component, pageType }: { component: JSX.Element, pageType: string }) {
   const { signOut } = useLogto();
 
   const logOut = () => {
@@ -12,6 +13,10 @@ function AutenticatedHome({ component }: { component: JSX.Element }) {
 
   return (
     <Layout>
+      {pageType === 'list' && <><ListFilters /><Table /></> }
+      
+      {/* in list type I have to render the filters and the table */}
+      {/* in detail type I have to render the detail */}
       {component}
       <button onClick={logOut}>Logout</button>
     </Layout>
