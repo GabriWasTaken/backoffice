@@ -18,7 +18,7 @@ function AppRouter() {
       return (  
       <Route
         path={element.pageType === 'detail' ? `${element.path}/:id` : element.path}
-        element={isAuthenticated ? <AutenticatedHome component={<element.component />} pageType={element.pageType} /> : <Navigate to="/" />}
+        element={isAuthenticated ? <AutenticatedHome component={element} /> : <Navigate to="/" />}
       />
     );
     })

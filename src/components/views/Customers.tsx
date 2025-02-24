@@ -1,6 +1,7 @@
 import React from 'react'
 
-function Customers() {
+function Customers( {data}: {data: string[]} ) {
+  console.log(data);
   return (
     <div>Customers</div>
   )

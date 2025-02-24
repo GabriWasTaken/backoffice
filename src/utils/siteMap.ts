@@ -1,6 +1,7 @@
 import { Home, Inbox, LucideProps } from "lucide-react";
 import Dashboard from "@/components/views/Dashboard";
 import Customers from "@/components/views/Customers";
+import { JSX } from "react";
 
 
 /**
@@ -14,7 +15,7 @@ type PageType = 'list' | 'detail' | 'none';
 /**
  * Represents a site map entry, defining the structure and metadata for a page in the application.
  */
-type SiteMap = {
+export type SiteMap = {
   /**
    * The position in sidebar
    */
@@ -43,7 +44,7 @@ type SiteMap = {
   /**
    * The React component of the page.
    */
-  component: React.ComponentType;
+  component: ( {data}: {data: string[]} ) => JSX.Element;
 
   /**
    * The type of the page, which determines its purpose and behavior [list, detail, none].
@@ -66,6 +67,15 @@ const siteMap: SiteMap[] = [
     index: 1,
     title: 'Customers',
     path: '/customers',
+    icon: Inbox,
+    tooltip: 'Customers',
+    component: Customers,
+    pageType: 'list',
+  },
+  {
+    index: 2,
+    title: 'Ciccio',
+    path: '/ciccio',
     icon: Inbox,
     tooltip: 'Customers',
     component: Customers,
