@@ -9,14 +9,26 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
+import { useLogto } from '@logto/react';
+import { useTranslation } from 'react-i18next';
 
 function Topbar() {
+  const { signOut } = useLogto();
+  const { t } = useTranslation();
+
+  const username = localStorage.getItem("username");
+
+  const logOut = () => {
+    localStorage.removeItem("isAuthenticated");
+    signOut();
+  }
+
   return (
-    <div className="bg-red-200">Qua voglio la topbar
-      <Select onValueChange={(value) => i18next.changeLanguage(value)}>
+    <div className="flex justify-end items-center gap-4 mr-4">
+      <Select defaultValue={i18next.language} onValueChange={(value) => i18next.changeLanguage(value)}>
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Select a fruit" />
+          <SelectValue placeholder="language" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -27,6 +39,8 @@ function Topbar() {
           </SelectGroup>
         </SelectContent>
       </Select>
+      <button onClick={logOut}>{t('logout')}</button>
+      {username && <p>Ciao {username}</p>}
     </div>
   )
 }

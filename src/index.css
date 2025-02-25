@@ -91,6 +91,19 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+@keyframes animate-grow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.animate-grow {
+  animation: animate-grow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

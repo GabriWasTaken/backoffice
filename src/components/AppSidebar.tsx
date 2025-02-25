@@ -1,3 +1,4 @@
+import React from "react";
 import siteMap from "@/utils/siteMap";
 
 import {
@@ -16,7 +17,7 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Logo</SidebarGroupLabel>
+          <SidebarGroupLabel><img className="w-10" src="/logo-small.png" alt="logo" /></SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {siteMap.map((item) => (
