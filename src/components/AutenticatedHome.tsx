@@ -4,6 +4,7 @@ import ListFilters from './listComponents/ListFilters';
 import Table from './listComponents/Table';
 import { SiteMap } from '@/utils/siteMap';
 import { useQuery } from '@tanstack/react-query';
+import { Skeleton } from './ui/skeleton';
 
 function AutenticatedHome({ component }: { component: SiteMap }) {
 
@@ -22,7 +23,7 @@ function AutenticatedHome({ component }: { component: SiteMap }) {
 
   return (
     <Layout>
-      {isPending ? <span>Loading...</span> :
+      {isPending ? <div className='px-8'><Skeleton className="w-full h-[20px] rounded-full"/></div> :
         <>
           {component.pageType === 'list' && <><ListFilters /><Table /></>}
           <component.component data={data} />

@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useTheme } from "next-themes"
 import { Toaster as Sonner, ToasterProps } from "sonner"
 
