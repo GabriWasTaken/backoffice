@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { LogtoProvider, LogtoConfig } from '@logto/react';
 import './App.css'
 import AppRouter from './components/AppRouter';
@@ -8,8 +9,8 @@ import {
 
 function App() {
   const config: LogtoConfig = {
-    endpoint: 'https://qrnd96.logto.app/',
-    appId: 'h92vhil932vbro74vaxyo',
+    endpoint: 'https://gsbkl0.logto.app/',
+    appId: 'wx3xdbp1kzpr7e2xrjpyc',
   };
   const queryClient = new QueryClient();
 

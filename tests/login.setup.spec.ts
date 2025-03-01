@@ -4,7 +4,14 @@ test('perform login', async ({ page }) => {
   await page.goto('http://localhost:3000/');
   await expect(page.getByTestId('loader')).toBeVisible();
   await expect(page.getByTestId('loader')).not.toBeVisible();
-  await page.getByRole('group', { name: 'Email' }).locator('span').fill('gabrieletorta@gmail.com');
-  await page.getByText('Password').fill('ANvfI1xk');
-  await page.getByRole('button', { name: 'Accedi' }).click();
+  await expect(page.getByRole('textbox').nth(1)).toBeVisible({timeout: 20000});
+
+  await page.getByRole('textbox').nth(0).fill('gabrieletorta@gmail.com');
+  await page.getByRole('textbox').nth(1).fill('C6HmEjcp');
+
+  await page.getByRole('button', { name: 'Sign In' }).click();
+
+  await expect(page.getByTestId('loader')).toBeVisible();
+  await expect(page.getByTestId('loader')).not.toBeVisible();
+  await expect(page.getByTestId('topbar')).toBeVisible();
 });

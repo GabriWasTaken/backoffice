@@ -25,7 +25,7 @@ function Topbar() {
   }
 
   return (
-    <div className="flex justify-end items-center gap-4 mr-4">
+    <div data-testid="topbar" className="flex justify-end items-center gap-4 mr-4">
       <Select defaultValue={i18next.language} onValueChange={(value) => i18next.changeLanguage(value)}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="language" />
