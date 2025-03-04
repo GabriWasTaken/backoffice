@@ -1,32 +1,36 @@
 import React from 'react'
 import Layout from './Layout';
-import ListFilters from './listComponents/ListFilters';
-import Table from './listComponents/Table';
 import { SiteMap } from '@/utils/siteMap';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { Skeleton } from './ui/skeleton';
+import { PaginationState } from '@tanstack/react-table';
 
 function AutenticatedHome({ component }: { component: SiteMap }) {
 
-  const fetchPage = (): Promise<string[]> => {
-    return fetch('http://localhost:3005' + component.path).then(res => res.json());
+  const [pagination, setPagination] = React.useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  })
+
+  const fetchPage = (pagination: PaginationState): Promise<typeof component.QueryReturnType> => {
+    return fetch(`http://localhost:3005${component.path}?page=${pagination.pageIndex}&limit=${pagination.pageSize}`).then(res => res.json());
   }
 
-  const { isPending, isError, data, error } = useQuery({
-    queryKey: ['page'],
-    queryFn: fetchPage,
-  });
+  const dataQuery = useQuery({
+    queryKey: ['data', pagination],
+    queryFn: () => fetchPage(pagination),
+    placeholderData: keepPreviousData,
+  })
 
-  if (isError) {
-    return <Layout><span>Error: {error.message}</span></Layout>
+  if (dataQuery.isError) {
+    return <Layout><span>Error: {dataQuery.error.message}</span></Layout>
   }
 
   return (
     <Layout>
-      {isPending ? <div className='px-8'><Skeleton className="w-full h-[20px] rounded-full"/></div> :
+      {dataQuery.isPending ? <div className='px-8'><Skeleton className="w-full h-[20px] rounded-full"/></div> :
         <>
-          {component.pageType === 'list' && <><ListFilters /><Table /></>}
-          <component.component data={data} />
+          <component.component dataQuery={dataQuery} pagination={pagination} setPagination={setPagination}/>
         </>}
     </Layout>
   );

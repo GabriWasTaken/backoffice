@@ -2,6 +2,7 @@ import { Home, Inbox, LucideProps } from "lucide-react";
 import Dashboard from "@/components/views/Dashboard";
 import Customers from "@/components/views/Customers";
 import { JSX } from "react";
+import { Q } from "node_modules/react-router/dist/development/route-data-Cq_b5feC.d.mts";
 
 
 /**
@@ -50,7 +51,14 @@ export type SiteMap = {
    * The type of the page, which determines its purpose and behavior [list, detail, none].
    */
   pageType: PageType;
+
+  QueryReturnType: QType1
+
 };
+
+type QType1 = {
+  name: string,
+}
 
 
 const siteMap: SiteMap[] = [
@@ -62,6 +70,7 @@ const siteMap: SiteMap[] = [
     tooltip: 'Home',
     component: Dashboard,
     pageType: 'list',
+    QueryReturnType: undefined as unknown as QType1,
   },
   {
     index: 1,
@@ -71,6 +80,7 @@ const siteMap: SiteMap[] = [
     tooltip: 'Customers',
     component: Customers,
     pageType: 'list',
+    QueryReturnType: undefined as unknown as QType1,
   },
   {
     index: 2,
@@ -80,6 +90,7 @@ const siteMap: SiteMap[] = [
     tooltip: 'Customers',
     component: Customers,
     pageType: 'list',
+    QueryReturnType: undefined as unknown as QType1,
   },
 ];
 

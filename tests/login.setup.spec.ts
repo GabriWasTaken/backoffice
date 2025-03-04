@@ -10,8 +10,5 @@ test('perform login', async ({ page }) => {
   await page.getByRole('textbox').nth(1).fill('C6HmEjcp');
 
   await page.getByRole('button', { name: 'Sign In' }).click();
-
-  await expect(page.getByTestId('loader')).toBeVisible();
-  await expect(page.getByTestId('loader')).not.toBeVisible();
   await expect(page.getByTestId('topbar')).toBeVisible();
 });

@@ -91,6 +91,33 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.resizer {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  right: 0;
+  width: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: col-resize;
+  user-select: none;
+  touch-action: none;
+}
+
+.resizer.isResizing {
+  background: blue;
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .resizer {
+    opacity: 0;
+  }
+
+  *:hover > .resizer {
+    opacity: 1;
+  }
+}
+
 @keyframes animate-grow {
   0%, 100% {
     transform: scale(1);
