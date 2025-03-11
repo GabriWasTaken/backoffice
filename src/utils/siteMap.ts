@@ -52,35 +52,35 @@ export type SiteMap = {
    */
   pageType: PageType;
 
-  QueryReturnType: QType1
-
 };
 
-type QType1 = {
-  name: string,
+export type QType1 = {
+  'dashboard': {
+    name: string
+  },
+  'customers': {
+    cazzi: string,
+  }
 }
-
 
 const siteMap: SiteMap[] = [
   {
     index: 0,
-    title: 'Dashboard',
+    title: 'dashboard',
     path: '/dashboard',
     icon: Home,
     tooltip: 'Home',
     component: Dashboard,
     pageType: 'list',
-    QueryReturnType: undefined as unknown as QType1,
   },
   {
     index: 1,
-    title: 'Customers',
+    title: 'customer',
     path: '/customers',
     icon: Inbox,
     tooltip: 'Customers',
     component: Customers,
     pageType: 'list',
-    QueryReturnType: undefined as unknown as QType1,
   },
   {
     index: 2,
@@ -90,7 +90,6 @@ const siteMap: SiteMap[] = [
     tooltip: 'Customers',
     component: Customers,
     pageType: 'list',
-    QueryReturnType: undefined as unknown as QType1,
   },
 ];
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from './Layout';
-import { SiteMap } from '@/utils/siteMap';
+import { QType1, SiteMap } from '@/utils/siteMap';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { Skeleton } from './ui/skeleton';
 import { PaginationState } from '@tanstack/react-table';
@@ -12,9 +12,17 @@ function AutenticatedHome({ component }: { component: SiteMap }) {
     pageSize: 10,
   })
 
-  const fetchPage = (pagination: PaginationState): Promise<typeof component.QueryReturnType> => {
+  const fetchPage = (pagination: PaginationState): Promise<unknown> => {
     return fetch(`http://localhost:3005${component.path}?page=${pagination.pageIndex}&limit=${pagination.pageSize}`).then(res => res.json());
   }
+
+  /*
+    const fetchPageA = <T extends keyof QType1,>(key: T): Promise<QType1[T]> => {
+      return fetch(`http://localhost:3005${component.path}?page=${pagination.pageIndex}&limit=${pagination.pageSize}`).then(res => res.json());
+    }
+
+    const a = await fetchPageA('dashboard');
+  */
 
   const dataQuery = useQuery({
     queryKey: ['data', pagination],
