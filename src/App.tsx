@@ -9,8 +9,8 @@ import {
 
 function App() {
   const config: LogtoConfig = {
-    endpoint: 'https://gsbkl0.logto.app/',
-    appId: 'wx3xdbp1kzpr7e2xrjpyc',
+    endpoint: '',
+    appId: '',
   };
   const queryClient = new QueryClient();
 
