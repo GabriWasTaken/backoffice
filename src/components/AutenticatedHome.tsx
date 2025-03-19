@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from './Layout';
-import { QType1, SiteMap } from '@/utils/siteMap';
+import { SiteMap } from '@/utils/siteMap';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { Skeleton } from './ui/skeleton';
 import { PaginationState } from '@tanstack/react-table';
