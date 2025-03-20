@@ -11,6 +11,7 @@ function App() {
   const config: LogtoConfig = {
     endpoint: import.meta.env.VITE_LOGTO_ENDPOINT,
     appId: import.meta.env.VITE_LOGTO_APPID,
+    resources: [import.meta.env.VITE_LOGTO_RESOURCES],
   };
   const queryClient = new QueryClient();
 
