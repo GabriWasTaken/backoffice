@@ -13,7 +13,7 @@ function AutenticatedHome({ component }: { component: SiteMap }) {
   })
 
   const fetchPage = (pagination: PaginationState): Promise<unknown> => {
-    return fetch(`http://localhost:3005${component.path}?page=${pagination.pageIndex}&limit=${pagination.pageSize}`).then(res => res.json());
+    return fetch(`${import.meta.env.VITE_BASE_URL}${component.path}?page=${pagination.pageIndex}&limit=${pagination.pageSize}`).then(res => res.json());
   }
 
   /*

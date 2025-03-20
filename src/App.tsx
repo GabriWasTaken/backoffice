@@ -9,8 +9,8 @@ import {
 
 function App() {
   const config: LogtoConfig = {
-    endpoint: '',
-    appId: '',
+    endpoint: import.meta.env.VITE_LOGTO_ENDPOINT,
+    appId: import.meta.env.VITE_LOGTO_APPID,
   };
   const queryClient = new QueryClient();
 
