@@ -13,7 +13,7 @@ function Home() {
         console.log("claims", claims);
         navigate('/dashboard');
       } else {
-        signIn('http://localhost:3000/callback');
+        signIn(import.meta.env.VITE_LOGTO_URL_CALLBACK);
       }
     })();
   }, [getIdTokenClaims, isAuthenticated, signIn]);

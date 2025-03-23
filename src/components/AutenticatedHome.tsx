@@ -16,14 +16,6 @@ function AutenticatedHome({ component }: { component: SiteMap }) {
     return fetch(`${import.meta.env.VITE_BASE_URL}${component.path}?page=${pagination.pageIndex}&limit=${pagination.pageSize}`).then(res => res.json());
   }
 
-  /*
-    const fetchPageA = <T extends keyof QType1,>(key: T): Promise<QType1[T]> => {
-      return fetch(`http://localhost:3005${component.path}?page=${pagination.pageIndex}&limit=${pagination.pageSize}`).then(res => res.json());
-    }
-
-    const a = await fetchPageA('dashboard');
-  */
-
   const dataQuery = useQuery({
     queryKey: ['data', pagination],
     queryFn: () => fetchPage(pagination),

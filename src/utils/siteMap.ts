@@ -1,9 +1,9 @@
 import { Home, Inbox, LucideProps } from "lucide-react";
-import Dashboard from "@/components/views/Dashboard";
-import Customers from "@/components/views/Customers";
+import Dashboard from "@/components/sections/Dashboard";
+import Customers from "@/components/sections/Customers";
 import { JSX } from "react";
-import { Q } from "node_modules/react-router/dist/development/route-data-Cq_b5feC.d.mts";
-
+import { QueryObserverSuccessResult, QueryObserverPlaceholderResult } from "@tanstack/react-query";
+import { PaginationState } from "@tanstack/react-table";
 
 /**
  * Represents the type of page.
@@ -45,7 +45,7 @@ export type SiteMap = {
   /**
    * The React component of the page.
    */
-  component: ( {data}: {data: string[]} ) => JSX.Element;
+  component: ( {dataQuery, pagination, setPagination}: {dataQuery: QueryObserverSuccessResult<unknown, Error> | QueryObserverPlaceholderResult<unknown, Error>, pagination: PaginationState, setPagination: React.Dispatch<React.SetStateAction<PaginationState>>} ) => JSX.Element;
 
   /**
    * The type of the page, which determines its purpose and behavior [list, detail, none].
@@ -53,15 +53,6 @@ export type SiteMap = {
   pageType: PageType;
 
 };
-
-export type QType1 = {
-  'dashboard': {
-    name: string
-  },
-  'customers': {
-    cazzi: string,
-  }
-}
 
 const siteMap: SiteMap[] = [
   {
@@ -77,15 +68,6 @@ const siteMap: SiteMap[] = [
     index: 1,
     title: 'customer',
     path: '/customers',
-    icon: Inbox,
-    tooltip: 'Customers',
-    component: Customers,
-    pageType: 'list',
-  },
-  {
-    index: 2,
-    title: 'Ciccio',
-    path: '/ciccio',
     icon: Inbox,
     tooltip: 'Customers',
     component: Customers,

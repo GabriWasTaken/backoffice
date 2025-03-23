@@ -7,7 +7,16 @@ import {
   flexRender,
   PaginationState,
 } from '@tanstack/react-table'
-function TableServerSide( {columns, dataQuery, pagination, setPagination}: {columns: ColumnDef<any>[], dataQuery:any, pagination: PaginationState, setPagination: any} ) {
+import { QueryObserverSuccessResult, QueryObserverPlaceholderResult } from '@tanstack/react-query'
+
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[]
+  dataQuery:  QueryObserverSuccessResult<unknown, Error> | QueryObserverPlaceholderResult<unknown, Error>
+  pagination: PaginationState
+  setPagination: React.Dispatch<React.SetStateAction<PaginationState>>
+}
+
+function TableServerSide<TData, TValue>( {columns, dataQuery, pagination, setPagination}: DataTableProps<TData, TValue> ) {
   const defaultData = React.useMemo(() => [], [])
 
   const table = useReactTable({

@@ -1,8 +1,9 @@
 import React from 'react'
 import { ColumnDef, PaginationState } from '@tanstack/react-table';
 import TableServerSide from '../listComponents/TableServerSide';
+import { QueryObserverPlaceholderResult, QueryObserverSuccessResult } from '@tanstack/react-query';
 
-function Customers( {dataQuery, pagination, setPagination}: {dataQuery: any, pagination: PaginationState, setPagination: any} ) {
+function Customers( {dataQuery, pagination, setPagination}: {dataQuery: QueryObserverSuccessResult<unknown, Error> | QueryObserverPlaceholderResult<unknown, Error>, pagination: PaginationState, setPagination: React.Dispatch<React.SetStateAction<PaginationState>>} ) {
   type ColDef = {
     id: string,
     title: string,
